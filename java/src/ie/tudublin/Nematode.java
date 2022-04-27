@@ -81,6 +81,11 @@ public class Nematode
         pa.noFill();
         pa.stroke(255);
 
+        // name
+        pa.textSize(16);
+        pa.textAlign(PApplet.CENTER, PApplet.CENTER);
+        pa.text(name, x, border - 2 * segmentSize);
+
         // eyes
         if (eyes == true)
         {
@@ -97,7 +102,14 @@ public class Nematode
 
         for (int i = 1; i <= length; i++)
         {
-            y = PApplet.map(i, 1, length, border, pa.height - border);
+            if (length == 1)
+            {
+                y = pa.height / 2;
+            }
+            else
+            {
+                y = PApplet.map(i, 1, length, border, pa.height - border);
+            }
 
             // segment
             pa.circle(x, y, segmentSize);
@@ -109,7 +121,14 @@ public class Nematode
             }
         }
 
-        y = PApplet.map(length, 1, length, border, pa.height - border);
+        if (length == 1)
+        {
+            y = pa.height / 2;
+        }
+        else
+        {
+            y = PApplet.map(length, 1, length, border, pa.height - border);
+        }
 
         switch(gender)
         {

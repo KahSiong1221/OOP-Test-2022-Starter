@@ -10,12 +10,33 @@ public class NematodeVisualiser extends PApplet
 {
 
 	ArrayList<Nematode> nematodes = new ArrayList<Nematode>();
+	int nIndex = 0;
+	int nSize;
 
 	public void keyPressed()
 	{		
 		if (keyCode == LEFT)
 		{
-		}		
+			if (nIndex == 0)
+			{
+				nIndex = nSize;
+			}
+			else
+			{
+				nIndex--;
+			}
+		}	
+		else if (keyCode == RIGHT)
+		{
+			if (nIndex == nSize)
+			{
+				nIndex = 0;
+			}
+			else
+			{
+				nIndex++;
+			}
+		}	
 	}
 
 
@@ -32,6 +53,7 @@ public class NematodeVisualiser extends PApplet
 		
 		loadNematodes();
 		printNematodes();
+		nSize = nematodes.size() - 1;
 	}
 	
 
@@ -56,11 +78,21 @@ public class NematodeVisualiser extends PApplet
 
 	public void drawNematodes()
 	{
-		nematodes.get(5).render(this);
+		nematodes.get(nIndex).render(this);
 	}
 
 	public void draw()
 	{	
+		background(0);
 		drawNematodes();
+
+		noFill();
+		color(255, 255, 255);
+
+		float tx = width * 3 / 4;
+		float ty = height / 2;
+		triangle(tx, ty, tx - 50, ty - 50, tx - 50, ty + 50);
+		tx = width * 1 / 4;
+		triangle(tx, ty, tx + 50, ty - 50, tx + 50, ty + 50);
 	}
 }

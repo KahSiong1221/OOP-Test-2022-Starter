@@ -20,6 +20,17 @@ public class Nematode
         this.eyes = eyes;
     }
 
+    public Nematode(TableRow tr)
+    {
+        this(
+            tr.getString("name"),
+            tr.getInt("length"),
+            tr.getInt("limbs") == 1,
+            tr.getString("gender").charAt(0),
+            tr.getInt("eyes") == 1
+        );
+    }
+
     @Override
     public String toString() {
         return "Nematode [eyes=" + eyes + ", gender=" + gender + ", length=" + length + ", limbs=" + limbs + ", name="

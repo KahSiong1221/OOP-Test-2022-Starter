@@ -68,7 +68,7 @@ public class Nematode
         this.eyes = eyes;
     }
 
-    public void render(NematodeVisualiser pa)
+    public void render(NematodeVisualiser pa, float c)
     {
         float segmentSize = 30;
         float radius = segmentSize / 2;
@@ -78,12 +78,12 @@ public class Nematode
         float x = pa.width / 2;
 
         pa.ellipseMode(PApplet.CENTER);
-        pa.noFill();
-        pa.stroke(255);
+        pa.stroke(c, 255, 255);
 
         // name
         pa.textSize(16);
         pa.textAlign(PApplet.CENTER, PApplet.CENTER);
+        pa.fill(c, 255, 255);
         pa.text(name, x, border - 2 * segmentSize);
 
         // eyes
@@ -99,6 +99,8 @@ public class Nematode
             pa.line(x - x2, border - y2, x - radius - x2, border - radius - y2);
             pa.circle(x - radius - x2, border - radius - y2, 7);
         }
+
+        pa.noFill();
 
         for (int i = 1; i <= length; i++)
         {
@@ -129,6 +131,8 @@ public class Nematode
         {
             y = PApplet.map(length, 1, length, border, pa.height - border);
         }
+
+        pa.fill(c, 255, 255);
 
         switch(gender)
         {

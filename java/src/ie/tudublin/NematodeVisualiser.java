@@ -12,6 +12,7 @@ public class NematodeVisualiser extends PApplet
 	ArrayList<Nematode> nematodes = new ArrayList<Nematode>();
 	int nIndex = 0;
 	int nSize;
+	float c = 0;
 
 	public void keyPressed()
 	{		
@@ -37,6 +38,8 @@ public class NematodeVisualiser extends PApplet
 				nIndex++;
 			}
 		}	
+
+		c = map(nIndex, 0, nSize, 0, 255);
 	}
 
 
@@ -78,7 +81,7 @@ public class NematodeVisualiser extends PApplet
 
 	public void drawNematodes()
 	{
-		nematodes.get(nIndex).render(this);
+		nematodes.get(nIndex).render(this, c);
 	}
 
 	public void draw()
@@ -87,7 +90,7 @@ public class NematodeVisualiser extends PApplet
 		drawNematodes();
 
 		noFill();
-		color(255, 255, 255);
+		stroke(c, 255, 255);
 
 		float tx = width * 3 / 4;
 		float ty = height / 2;
